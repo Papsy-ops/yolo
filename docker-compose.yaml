@@ -2,7 +2,7 @@ version: '3'
 services:
 
   mongo:
-    image: mongo:6.0-jammy
+    image: mongo:4.4  # Use official lightweight MongoDB image
     container_name: mongo-app
     ports:
       - "27017:27017"
@@ -17,7 +17,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/products
+      - MONGO_URI=mongodb://mongo-app:27017/products
     depends_on:
       - mongo
     networks:
@@ -27,7 +27,7 @@ services:
     build: ./client
     container_name: yolo-frontend-v1
     ports:
-      - "3000:80"  # Nginx listens on port 80 inside the container
+      - "3000:80"  # Nginx or other static file server exposed port
     depends_on:
       - backend
     networks:
