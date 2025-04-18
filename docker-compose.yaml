@@ -1,10 +1,8 @@
-version: "3.8"
-
 services:
 
   mongo:
     image: mongo
-    container_name: mongo-app
+    container_name: mongo
     ports:
       - "27017:27017"
     volumes:
@@ -27,8 +25,13 @@ services:
   frontend:
     build: ./client
     container_name: frontend
+    stdin_open: true
+    tty: true
+    restart: always
     ports:
       - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     depends_on:
       - backend
     networks:
