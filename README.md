@@ -91,7 +91,18 @@ docker push papetua/yolo_backend:v1.1.0
 ## 8.  Image Deployment to DockerHub
 All versioned images were successfully pushed to DockerHub:
 
-- Backend: `./yolo_backend:v1.1.0`
-- Frontend: `./yolo_frontend:v1.0.0`
+- Backend: `papetua/yolo_backend:v1.1.0`
+- Frontend: `papetua/yolo_frontend:v1.1.0`
+
+
+
+## 9.  DockerHub Screenshot
+All versioned images were successfully pushed to DockerHub:
+
+- ![Alt Text](image-1.png)
+- ![Alt Text](image-2.png)
+
+
+```
 
 ```
