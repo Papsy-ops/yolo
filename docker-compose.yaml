@@ -1,8 +1,9 @@
+version: '3'
 services:
 
   mongo:
     image: mongo
-    container_name: mongo
+    container_name: mongo-app
     ports:
       - "27017:27017"
     volumes:
@@ -24,14 +25,9 @@ services:
 
   frontend:
     build: ./client
-    container_name: yolo-frontend-v1  # 
-    stdin_open: true
-    tty: true
-    restart: always
+    container_name: yolo-frontend-v1
     ports:
-      - "3000:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      - "3000:80"  # Nginx listens on port 80 inside the container
     depends_on:
       - backend
     networks:

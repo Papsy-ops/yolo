@@ -1,16 +1,16 @@
 # Stage 1: Build
-FROM node:18 AS build
+FROM node:18-alpine AS build
 
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 COPY . .
 
-# Stage 2: Run on Alpine
+# Stage 2: Run
 FROM node:18-alpine
 
 WORKDIR /app
-COPY --from=build /usr/src/app /app
+COPY --from=build /app .
 
 EXPOSE 5000
 CMD ["node", "server.js"]
