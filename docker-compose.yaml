@@ -1,25 +1,12 @@
 version: '3'
 services:
-
-  mongo:
-    image: mongo:4.4  # Use official lightweight MongoDB image
-    container_name: mongo-app
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    networks:
-      - app-net
-
   backend:
     build: ./backend
     container_name: yolo-backend-v1  
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URI=mongodb://mongo-app:27017/products
-    depends_on:
-      - mongo
+      - USE_MOCK_DB=true  # Use mock DB in production
     networks:
       - app-net
 
@@ -29,12 +16,12 @@ services:
     ports:
       - "3000:80"  # Nginx or other static file server exposed port
     depends_on:
-      - backend
+      - backend  # Frontend depends on the backend
     networks:
       - app-net
 
 volumes:
-  mongo-data:
+  mongo-data:  # Can be removed, since we're not using MongoDB anymore
 
 networks:
   app-net:
