@@ -17,9 +17,9 @@ services:
     ports:
       - "5000:5000"
     environment:
-      MONGODB_URI: mongodb://papetua:Ca-rina484089@mongo:27017/yolomy?authSource=admin
+       MONGODB_URI: mongodb://narina:sa12345%25@mongo:27017/yolomy?authSource=admin
     depends_on:
-    - mongo
+      - mongo
     networks:
       - app-net
 

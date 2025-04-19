@@ -6,8 +6,9 @@ const upload   = multer();
 
 const productRoute = require('./routes/api/productRoute');
 
-// Use a hardcoded MongoDB URI here
-const MONGODB_URI = 'mongodb://mongo:27017/yolomy';  // Replace this with your actual MongoDB URI if needed
+// Get the MongoDB URI from environment variables
+const MONGODB_URI = process.env.MONGODB_URI;
+
 if (!MONGODB_URI) {
   console.error('❌ MONGODB_URI not set!');
   process.exit(1);
@@ -15,8 +16,11 @@ if (!MONGODB_URI) {
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
+
 
 const db = mongoose.connection;
 db.once('open', () => console.log('✅ Database connected successfully'));
