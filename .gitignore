@@ -6,4 +6,4 @@ vault.yml
 .vscode/
 .vscode
 .vscode/*
-.vscode/*.json
+.vscode/*.jsonmongodb_data/
