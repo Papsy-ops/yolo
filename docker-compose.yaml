@@ -1,27 +1,41 @@
-version: '3'
+version: '3.8'
+
 services:
-  backend:
-    build: ./backend
-    container_name: yolo-backend-v1  
+  mongo:
+    image: papetua/mongo:v2.0.0
+    container_name: mongo-app
     ports:
-      - "5000:5000"
-    environment:
-      - USE_MOCK_DB=true  # Use mock DB in production
+      - "27017:27017"
+    volumes:
+      -  yolo_mongo-data:/data/db
     networks:
       - app-net
 
+  backend:
+    build: ./backend
+    image: papetua/yolo_backend:v2.0.0
+    container_name: yolo-backend
+    ports:
+      - "5000:5000"
+    networks:
+      - app-net
+
+
   frontend:
     build: ./client
-    container_name: yolo-frontend-v1
+    image: papetua/yolo_frontend:v2.0.0
+    container_name: yolo-frontend
+    restart: always
     ports:
-      - "3000:80"  # Nginx or other static file server exposed port
+      - "3000:80"
     depends_on:
-      - backend  # Frontend depends on the backend
+      - backend
     networks:
       - app-net
 
 volumes:
-  mongo-data:  # Can be removed, since we're not using MongoDB anymore
+  yolo_mongo-data:
+    driver: local
 
 networks:
   app-net:
