@@ -7,3 +7,5 @@ vault.yml
 .vscode
 .vscode/*
 .vscode/*.jsonmongodb_data/
+# Ignore MongoDB data volume
+mongodb_data/
