@@ -14,14 +14,14 @@ Before you begin, ensure you have the following installed:
 
 ## Setup
 
-1.  **Clone the repository:**
+### 1. Clone the repository:
 
     ```bash
     git clone [https://github.com/Papsy-ops/yolo](https://github.com/Papsy-ops/yolo)
     cd yolo
     ```
 
-2.  **Start the application using Docker Compose:**
+### 2.  Start the application using Docker Compose:
 
     ```bash
     docker-compose up -d
@@ -36,17 +36,17 @@ Before you begin, ensure you have the following installed:
     * Establish a network (`app-net`) for communication between the containers.
     * Mount a named volume (`mongo_data`) to persist the MongoDB database.
 
-3.  **Access the application:**
+### 3.  Access the application:
 
     * Open your web browser and navigate to `http://localhost:3000` to view the e-commerce platform.
 
-## Technical Details
+Technical Details
 
-### 1. Base Image Choice
+Base Image Choice
 
-* **Backend:** The `papetua/yolo_backend:v2.0.0` image is a pre-built image. It is assumed to be based on a suitable Node.js base image to run the backend application. The choice to use this image was driven by the project setup and the desire for a consistent image source.
-* **Frontend:** The `papetua/yolo_frontend:v2.0.0` image is a pre-built image. It is assumed to be based on a suitable Node.js base image to serve the React frontend. The choice to use this image aligns the frontend image source with the backend and MongoDB images from the `papetua` organization.
-* **MongoDB:** The `papetua/mongo:v2.0.0` image, based on `karimtemple/mongo`, was chosen with the initial intention of using a potentially smaller MongoDB image. This aligns the MongoDB image source with the backend and frontend images from the `papetua` organization, creating a more consistent project. However, due to persistent "read-only directory" errors, the final working configuration involves running it with authentication disabled.
+* Backend: The `papetua/yolo_backend:v2.0.0` image is a pre-built image. It is assumed to be based on a suitable Node.js base image to run the backend application. The choice to use this image was driven by the project setup and the desire for a consistent image source.
+* Frontend: The `papetua/yolo_frontend:v2.0.0` image is a pre-built image. It is assumed to be based on a suitable Node.js base image to serve the React frontend. The choice to use this image aligns the frontend image source with the backend and MongoDB images from the `papetua` organization.
+* MongoDB:The `papetua/mongo:v2.0.0` image, based on `karimtemple/mongo`, was chosen with the initial intention of using a potentially smaller MongoDB image. This aligns the MongoDB image source with the backend and frontend images from the `papetua` organization, creating a more consistent project. However, due to persistent "read-only directory" errors, the final working configuration involves running it with authentication disabled.
 
 ### 2. Dockerfile Directives
 
