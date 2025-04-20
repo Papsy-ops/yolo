@@ -1,7 +1,8 @@
 ```markdown
 # Containerized E-commerce Platform with Product Management
 
-This project is a containerized e-commerce web application that allows you to manage retail products using Docker. It includes a Node.js backend, a React frontend, and a MongoDB database.
+This project is a containerized e-commerce web application that allows you to manage retail products using Docker. 
+It includes a Node.js backend, a React frontend, and a MongoDB database.
 
 ## Prerequisites
 
@@ -94,10 +95,10 @@ This ensures that the database data is stored outside the container's lifecycle.
 
 The Git workflow employed was as follows:
 
-1.  Forked the repository `https://github.com/Papsy-ops/yolo` to a personal GitHub account.
+1.  Forked the repository `https://github.com/Vinge1718/yolo` to a personal GitHub account `https://github.com/Papsy-ops/yolo` .
 2.  Cloned the forked repository to the local development environment.
-3.  Modified the `docker-compose.yml` file to define and orchestrate the application's services (frontend, backend, MongoDB), ensuring all core services utilize images from the `papetua` organization for consistency. This included updating the frontend service to use `papetua/yolo_frontend:v2.0.0`.
-4.  Committed the changes with descriptive commit messages to track the evolution of the Docker Compose setup. Examples of commit messages include "Initial Docker Compose setup", "Configure backend service", "Implement MongoDB service with volume", "Disable MongoDB authentication for workaround", and "Align frontend image source to papetua/*".
+3.  Modified the `docker-compose.yml` file to define and orchestrate the application's services (frontend, backend, MongoDB), ensuring all core services utilize images from the `papetua` organization for consistency. 
+4.  Committed the changes with descriptive commit messages to track the evolution of the Docker Compose setup. 
 5.  Pushed the local commits to the `master` branch of the remote GitHub repository (`origin master`).
 
 ### 6. Successful Running and Debugging
@@ -107,7 +108,7 @@ The application, consisting of the frontend, backend, and MongoDB, runs successf
 * Examining container logs using `docker logs <container_name>` to identify errors (e.g., `docker logs yolo-backend`).
 * Gaining shell access to running containers using `docker exec -it <container_name> /bin/sh` to inspect their internal state and configurations.
 * Troubleshooting the persistent "read-only directory" issue with the `papetua/mongo:v2.0.0` image by experimenting with different user configurations and ultimately resorting to running the container with authentication disabled as a temporary workaround.
-* Resolving a temporary issue encountered with `git push`.
+
 
 ### 7. Docker Image Tag Naming Standards
 
@@ -121,7 +122,7 @@ The explicit use of the `v2.0.0` tag for all core application images from the `p
 
 ### 8. Image Deployment to DockerHub
 
-The `docker-compose.yml` file references pre-built images hosted on DockerHub under the `papetua` organization. To fully meet this objective, the `papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0` images were built and pushed to DockerHub under the `Papsy-ops` account (assuming `papetua` is the DockerHub username). This ensures that the assignment reviewer can pull and run the application using these pre-built images.
+The `docker-compose.yml` file references pre-built images hosted on DockerHub under the `papetua` organization. To fully meet this objective, the `papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0` images were built and pushed to DockerHub under the `Papsy-ops` account.
 
 ### 9. MongoDB Setup and Authentication
 
