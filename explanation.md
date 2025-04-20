@@ -12,8 +12,6 @@ Before you begin, ensure you have the following installed:
 * **Docker Compose:** [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 * **Git:** [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-## Setup
-
 ### 1. Clone the repository:
 
 To begin, clone the project repository from GitHub using the following command:
