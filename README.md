@@ -45,7 +45,7 @@ The repository contains the following key files:
 
 * `docker-compose.yml`: Defines and manages the multi-container Docker application.
 * `./client/`: Contains the source code and `Dockerfile` for the frontend application.
-* `./server/`: Contains the source code and `Dockerfile` for the backend application.
+* `./backend/`: Contains the source code and `Dockerfile` for the backend application.
 * `explanation.md`: Provides detailed explanations for the implementation choices made in this project.
 * `README.md`: This file, providing instructions on how to run the application.
 

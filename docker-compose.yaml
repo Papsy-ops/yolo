@@ -25,7 +25,6 @@ services:
       - app-net
 
   frontend:
-    build: ./client
     image: papetua/yolo_frontend:v2.0.0
     container_name: yolo-frontend
     ports:
