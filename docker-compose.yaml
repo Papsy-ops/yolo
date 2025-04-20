@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mongo:
-    image: karimtemple/mongo
+    image: papetua/mongo:v2.0.0
     container_name: mongo
     ports:
       - "27017:27017"
@@ -18,7 +18,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGODB_URI=mongodb://narina:sa12345%25@mongo:27017/admin?authSource=admin
+      - MONGODB_URI=mongodb://mongo:27017/yolomy
     depends_on:
       - mongo
     networks:
