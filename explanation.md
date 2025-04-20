@@ -132,4 +132,4 @@ Initial attempts were made to enable authentication by connecting to the contain
 
 ### 10. Verification
 
-The base images utilized (`papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0`) were chosen to create a consistent application using images from the `papetua` DockerHub organization. This provides a unified source for the application's core components.```
+The base images utilized (`papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0`) were chosen to create a consistent application using images from the `papetua` DockerHub organization. This provides a unified source for the application's core components.
