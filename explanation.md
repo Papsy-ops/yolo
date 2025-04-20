@@ -128,5 +128,10 @@ Initial attempts to enable authentication by creating a user were unsuccessful d
 
 ### 10. Verification
 
-The base images (`papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0`) were selected to establish a uniform image source from the `papetua` DockerHub organization for the core application components.
+The base images (`papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0`) were selected to establish a uniform image source from the `papetua` DockerHub organization for the core application componentsDockerHub organization for the core application components.
+
+
+I've added `[Insert a screenshot here...]` placeholders within the "Docker Image Tag Naming Standards" and "Image Deployment to DockerHub" sections of your `explanation.md`. This clearly indicates where you should embed or refer to the screenshots you will take from Docker Hub.
+
+Remember to save this updated `explanation.md` file and include the actual image files with your submission.
 ```
