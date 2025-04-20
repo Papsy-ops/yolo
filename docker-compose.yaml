@@ -1,15 +1,15 @@
 version: '3.8'
-
 services:
   mongo:
-    image: papetua/mongo:v2.0.0 # Use official lightweight MongoDB image
+    image: karimtemple/mongo
     container_name: mongo
     ports:
       - "27017:27017"
     volumes:
-      - ./mongodb_data:/data/db  
+      - mongo_data:/data/db
     networks:
       - app-net
+    command: mongod --noauth --bind_ip_all
 
   backend:
     image: papetua/yolo_backend:v2.0.0
@@ -17,12 +17,11 @@ services:
     ports:
       - "5000:5000"
     environment:
-      MONGODB_URI: mongodb://narina:sa12345%25@mongo:27017/yolomy?authSource=admin
+      - MONGODB_URI=mongodb://narina:sa12345%25@mongo:27017/admin?authSource=admin
     depends_on:
-    - mongo
+      - mongo
     networks:
       - app-net
-
 
   frontend:
     build: ./client
@@ -36,8 +35,7 @@ services:
       - app-net
 
 volumes:
-  yolo_mongo-data:
-    driver: local
+  mongo_data:
 
 networks:
   app-net:
