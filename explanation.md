@@ -114,7 +114,7 @@ The `docker-compose.yml` file consistently uses the `v2.0.0` tag for the core ap
 * `papetua/yolo_frontend:v2.0.0`
 * `papetua/mongo:v2.0.0`
 
-The explicit use of the v2.0.0 tag for all core application images from the papetua organization provides a clear and consistent version identification. [![Docker Hub Version Tags](images/dockerhub_tags.png)]
+The explicit use of the v2.0.0 tag for all core application images from the papetua organization provides a clear and consistent version identification. ![Docker Hub Version Tags](images/dockerhub_tags.png)
 ![Docker Hub Repositories](images/dockerhub_repos.png)
 ### 8. Image Deployment to DockerHub
 
