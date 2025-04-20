@@ -10,6 +10,7 @@ services:
     networks:
       - app-net
     command: mongod --noauth --bind_ip_all
+    user: root
 
   backend:
     image: papetua/yolo_backend:v2.0.0
