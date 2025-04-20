@@ -1,4 +1,3 @@
-```markdown
 # Containerized E-commerce Platform with Product Management
 
 This project is a containerized e-commerce web application that allows you to manage retail products using Docker.
