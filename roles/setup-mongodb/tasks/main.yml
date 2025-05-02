@@ -1,14 +1,3 @@
----
-- name: Create Docker network
-  docker_network:
-    name: "{{ docker_network }}"
-    state: present
-
-- name: Create MongoDB volume
-  docker_volume:
-    name: "{{ mongo_volume_name }}"
-    state: present
-
 - name: Run MongoDB Container
   docker_container:
     name: "{{ mongo_container_name }}"
@@ -21,6 +10,8 @@
       - "{{ mongo_volume_path }}"
     networks:
       - name: "{{ docker_network }}"
+    command: mongod --noauth --bind_ip_all
+    user: root
   tags:
     - database
     - backend
