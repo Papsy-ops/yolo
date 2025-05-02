@@ -1,26 +1,27 @@
 ---
 - name: Create Docker network
   docker_network:
-    name: app-net
+    name: "{{ docker_network }}"
     state: present
 
 - name: Create MongoDB volume
   docker_volume:
-    name: mongo_data
+    name: "{{ mongo_volume_name }}"
     state: present
 
 - name: Run MongoDB Container
   docker_container:
-    name: mongo
-    image: papetua/mongo:v2.0.0
+    name: "{{ mongo_container_name }}"
+    image: "{{ mongo_image }}"
     state: started
     restart_policy: always
     ports:
-      - '27017:27017'
+      - "{{ mongo_port }}"
     volumes:
-      - ./mongo_data:/data/db
+      - "{{ mongo_volume_path }}"
     networks:
-      - name: app-net
+      - name: "{{ docker_network }}"
   tags:
     - database
     - backend
+  become: true

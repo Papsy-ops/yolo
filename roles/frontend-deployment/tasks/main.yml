@@ -1,13 +1,14 @@
+---
 - name: Run frontend container
   docker_container:
-    name: yolo-frontend
-    image: papetua/yolo_frontend:v2.0.0
+    name: "{{ frontend_container_name }}"
+    image: "{{ frontend_image }}"
     state: started
     restart_policy: always
     published_ports:
-      - "3000:80"
+      - "{{ frontend_port }}"
     networks:
-      - app-net
-
-    tags:
+      - name: "{{ docker_network }}"
+  tags:
     - frontend
+  become: true

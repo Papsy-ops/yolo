@@ -1,4 +1,6 @@
----
-mongo_container_name: app_mongo
-mongo_network: app-network
-mongo_volume: app-mongo-data
+mongo_container_name: mongo
+mongo_image: papetua/mongo:v2.0.0
+mongo_port: "27017:27017"
+mongo_volume_name: mongo_data
+mongo_volume_path: ./mongo_data:/data/db
+docker_network: app-net
