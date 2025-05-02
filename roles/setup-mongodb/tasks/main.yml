@@ -1,12 +1,14 @@
 ---
 - name: Run MongoDB Container
   docker_container:
-    name: app-mongo
+    name: mongo
     image: mongo
+    state: started
+    restart_policy: always
     ports:
       - '27017:27017'
     volumes:
-      - ./app-mongo-data:/data/db
+      - ./mongo_data:/data/db
     networks:
       - name: app-net
   tags:

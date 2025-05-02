@@ -1,16 +1,25 @@
 ---
-- name: Pull image from repository
-  docker_image:
-    name: brianbwire/brian-yolo-backend:v1.0.0
-    source: pull
+- name: Clone application repository
+  git:
+    repo: "{{ repo_url }}"
+    dest: /home/vagrant/app
+    version: master
 
-- name: Create Node.js Backend Container
+- name: Run backend container
   docker_container:
-    name: brian-yolo-backend
-    image: brianbwire/brian-yolo-backend:v1.0.0
+    name: yolo-backend
+    image: papetua/yolo_backend:v2.0.0
+    state: started
+    restart_policy: always
     networks:
       - name: app-net
     ports:
       - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/yolomy
     command: "npm start"
+
+    tags:
+    - backend
+
   become: yes
