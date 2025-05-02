@@ -6,9 +6,12 @@
   vars_files:
     - group_vars/all.yml
 
-    
-  roles: 
-    - frontend-deployment
-    - setup-mongodb   
+
+  roles:
+    - docker 
+    - setup-mongodb
     - backend-deployment
+    - frontend-deployment
+       
+    
     
