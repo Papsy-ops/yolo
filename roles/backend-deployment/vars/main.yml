@@ -1,4 +1,8 @@
----
-container_name: brian-yolo-backend
-network: app-net
-volume: app-mongo-data/app
+repo_url: https://github.com/Papsy-ops/yolo.git
+backend_container_name: yolo-backend
+backend_image: papetua/yolo_backend:v2.0.0
+backend_port: "5000:5000"
+mongodb_uri: mongodb://mongo:27017/yolomy
+app_path: /home/vagrant/app
+backend_command: npm start
+docker_network: app-net

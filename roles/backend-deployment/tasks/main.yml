@@ -2,24 +2,22 @@
 - name: Clone application repository
   git:
     repo: "{{ repo_url }}"
-    dest: /home/vagrant/app
+    dest: "{{ app_path }}"
     version: master
 
 - name: Run backend container
   docker_container:
-    name: yolo-backend
-    image: papetua/yolo_backend:v2.0.0
+    name: "{{ backend_container_name }}"
+    image: "{{ backend_image }}"
     state: started
     restart_policy: always
     networks:
-      - name: app-net
-    ports:
-      - "5000:5000"
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/yolomy
-    command: "npm start"
-
-    tags:
+      - name: "{{ docker_network }}"
+    published_ports:
+      - "{{ backend_port }}"
+    env:
+      MONGODB_URI: "{{ mongodb_uri }}"
+    command: "{{ backend_command }}"
+  tags:
     - backend
-
-  become: yes
+  become: true
