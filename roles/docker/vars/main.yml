@@ -1,0 +1,21 @@
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+
+docker_prerequisites:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+
+docker_gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
+
+ubuntu_codename: jammy  # or use {{ ansible_distribution_release }} dynamically
+
+docker_repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_codename }} stable"
+
+docker_repo_filename: docker
+
+docker_user: vagrant

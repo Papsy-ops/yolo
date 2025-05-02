@@ -1,36 +1,35 @@
-- name: Install Required Packages
+---
+- name: Install required packages for Docker
   apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg
-      - lsb-release
+    name: "{{ docker_prerequisites }}"
     state: present
     update_cache: yes
 
 - name: Add Docker’s official GPG key
   apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
+    url: "{{ docker_gpg_key_url }}"
     state: present
 
 - name: Set up the Docker repository
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    repo: "{{ docker_repo }}"
     state: present
-    filename: docker
+    filename: "{{ docker_repo_filename }}"
 
 - name: Install Docker Engine
   apt:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
+    name: "{{ docker_packages }}"
     state: latest
     update_cache: yes
 
-- name: Add vagrant user to docker group
+- name: Add user to docker group
   user:
-    name: vagrant
+    name: "{{ docker_user }}"
     groups: docker
     append: yes
+
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: yes
