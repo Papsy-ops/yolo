@@ -1,0 +1,4 @@
+frontend_container_name: yolo-frontend
+frontend_image: papetua/yolo_frontend:v2.0.0
+frontend_port: "3000:3000"
+docker_network: app-net

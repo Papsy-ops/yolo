@@ -1,0 +1,10 @@
+---
+- name: Configure and deploy app
+  hosts: web
+  become: true
+  roles:
+    - docker
+    - network
+    - setup-mongodb
+    - backend-deployment
+    - frontend-deployment

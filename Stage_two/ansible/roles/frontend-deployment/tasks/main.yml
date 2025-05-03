@@ -1,0 +1,14 @@
+---
+- name: Run frontend container
+  docker_container:
+    name: "{{ frontend_container_name }}"
+    image: "{{ frontend_image }}"
+    state: started
+    restart_policy: always
+    published_ports:
+      - "{{ frontend_port }}"
+    networks:
+      - name: "{{ docker_network }}"
+  tags:
+    - frontend
+  become: true

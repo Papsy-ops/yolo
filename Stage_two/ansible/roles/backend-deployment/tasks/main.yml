@@ -1,0 +1,23 @@
+---
+- name: Clone application repository
+  git:
+    repo: "{{ repo_url }}"
+    dest: "{{ app_path }}"
+    version: master
+
+- name: Run backend container
+  docker_container:
+    name: "{{ backend_container_name }}"
+    image: "{{ backend_image }}"
+    state: started
+    restart_policy: always
+    networks:
+      - name: "{{ docker_network }}"
+    published_ports:
+      - "{{ backend_port }}"
+    env:
+      MONGODB_URI: "{{ mongodb_uri }}"
+    command: "{{ backend_command }}"
+  tags:
+    - backend
+  become: true

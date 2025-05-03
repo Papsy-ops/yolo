@@ -1,0 +1,24 @@
+- name: Ensure app-net exists
+  docker_network:
+    name: "{{ docker_network }}"
+    state: present
+    force: true
+
+- name: Run MongoDB Container
+  docker_container:
+    name: "{{ mongo_container_name }}"
+    image: "{{ mongo_image }}"
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ mongo_port }}"
+    volumes:
+      - "{{ mongo_volume_path }}"
+    networks:
+      - name: "{{ docker_network }}"
+    command: mongod --noauth --bind_ip_all
+    user: root
+  tags:
+    - database
+    - backend
+  become: true
