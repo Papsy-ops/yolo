@@ -9,3 +9,8 @@ vault.yml
 .vscode/*.jsonmongodb_data/
 # Ignore MongoDB data volume
 mongodb_data/
+# Sensitive files
+Stage_two/service-account.json
+.terraform/
+
+
