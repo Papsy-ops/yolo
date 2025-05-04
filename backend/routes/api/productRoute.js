@@ -21,6 +21,8 @@ router.get('/', (req, res) => {
 // @route POST /products
 // @desc Create a product
 router.post('/', (req, res) => {
+//debugging
+  console.log("Incoming product:", req.body); 
   // Create a product item
   const newProduct = new Product({
     name: req.body.name,

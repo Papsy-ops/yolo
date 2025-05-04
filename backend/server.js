@@ -31,6 +31,7 @@ app.use(express.json());
 app.use(upload.array());
 app.use(cors());
 
+
 // 👉 Root route to avoid "Cannot GET /"
 app.get('/', (req, res) => {
   res.send('🎉 Backend is running!');
