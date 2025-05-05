@@ -12,7 +12,9 @@ services:
     user: root
 
   backend:
-    build: ./backend
+    image: papetua/yolo_backend:v3.0.0
+    build:
+      context: ./backend
     container_name: yolo-backend
     ports:
       - "5000:5000"
@@ -25,7 +27,9 @@ services:
       - app-net
 
   frontend:
-    build: ./client
+    image: papetua/yolo_frontend:v3.0.0
+    build:
+      context: ./client
     container_name: yolo-frontend
     environment:
       - REACT_APP_API_URL=http://yolo-backend:5000

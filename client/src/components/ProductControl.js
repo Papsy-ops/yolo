@@ -78,6 +78,7 @@ class ProductControl extends Component {
             editProduct: false,
             uploadPhoto: null
             
+            
         };
     }
 
