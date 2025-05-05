@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   mongo:
     image: papetua/mongo:v2.0.0
@@ -13,20 +12,23 @@ services:
     user: root
 
   backend:
-    image: papetua/yolo_backend:v2.0.0
+    build: ./backend
     container_name: yolo-backend
     ports:
       - "5000:5000"
     environment:
       - MONGODB_URI=mongodb://mongo:27017/yolomy
+      - FRONTEND_URL=http://yolo-frontend:3000
     depends_on:
       - mongo
     networks:
       - app-net
 
   frontend:
-    image: papetua/yolo_frontend:v2.0.0
+    build: ./client
     container_name: yolo-frontend
+    environment:
+      - REACT_APP_API_URL=http://yolo-backend:5000
     ports:
       - "3000:80"
     depends_on:

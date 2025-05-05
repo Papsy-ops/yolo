@@ -16,3 +16,10 @@ sudo chown -R 999:999 /var/lib/docker/volumes/yolo_mongo_data/_data
 
  environment:
       - MONGODB_URI=mongodb://narina:sa12345%25@mongo:27017/yolomy?authSource=admin
+
+
+docker compose down
+docker system prune -af --volumes
+docker compose build --no-cache
+docker compose up -d
+docker compose logs -f

@@ -9,6 +9,8 @@
       - "{{ frontend_port }}"
     networks:
       - name: "{{ docker_network }}"
+    env: 
+      REACT_APP_BACKEND_URL: "http://{{ backend_ip }}:{{ backend_port }}"
   tags:
     - frontend
   become: true

@@ -65,7 +65,7 @@ import EditProductForm from './EditProductForm';
 // ]
 
 
-const API_URL = "http://yolo-backend:5000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 class ProductControl extends Component {
     
@@ -80,7 +80,7 @@ class ProductControl extends Component {
             
         };
     }
-    
+
     componentDidMount(){
         axios.get(`${API_URL}/api/products`)
             .then(res =>{
@@ -90,6 +90,7 @@ class ProductControl extends Component {
                 })
             })
     }
+    
     handleEditProductClick = () =>{
         console.log('HandleEditClick reached!!')
         console.log(this.state.selectedProduct)
