@@ -1,62 +1,85 @@
 # Containerized E-commerce Platform with Product Management
 
-This project is a containerized e-commerce web application designed to manage retail products using Docker. It comprises a Node.js backend, a React frontend, and a MongoDB database.
+This project is a containerized e-commerce web application designed to manage retail products using Docker and automated provisioning using Ansible. It comprises a Node.js backend, a React frontend, and a MongoDB database, all orchestrated with Docker Compose inside a Vagrant-provisioned Ubuntu virtual machine.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed on your system:
+Before you begin, ensure the following tools are installed:
 
-* **Docker:** [https://www.docker.com/get-started](https://www.docker.com/get-started)
-* **Docker Compose:** [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-* **Git:** [https://git-scm.com/downloads](https://git-scm.com/downloads)
+- **Vagrant**: [https://www.vagrantup.com/downloads](https://www.vagrantup.com/downloads)
+- **VirtualBox** (or another provider): [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
+- **Ansible**: [https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- **Git**: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 ## Getting Started
 
-Follow these steps to get the application up and running on your local machine:
+Follow these steps to get the application up and running inside a provisioned VM:
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/Papsy-ops/yolo](https://github.com/Papsy-ops/yolo)
+    git clone https://github.com/Papsy-ops/yolo
     cd yolo
     ```
 
-2.  **Start the application using Docker Compose:**
+2. **Start the Vagrant VM:**
 
     ```bash
-    docker-compose up -d
+    vagrant up
     ```
 
     This command will:
+    - Download and provision an Ubuntu 20.04 virtual machine using the official `geerlingguy/ubuntu2004` box.
+    - Use Ansible as the provisioner to automatically configure the environment.
+    - Clone this repository inside the VM.
+    - Set up Docker and Docker Compose.
+    - Build or pull Docker images and run the containers.
 
-    * Pull the pre-built backend (`papetua/yolo_backend:v2.0.0`) and frontend (`papetua/yolo_frontend:v2.0.0`) images from Docker Hub.
-    * Pull the `papetua/mongo:v2.0.0` MongoDB image from Docker Hub.
-    * Create and start the containers for the backend (`yolo-backend`), frontend (`yolo-frontend`), and MongoDB (`mongo`).
-    * Establish a network (`app-net`) for communication between the containers.
-    * Mount a named volume (`mongo_data`) to persist the MongoDB database.
+3. **Access the application:**
 
-3.  **Access the application:**
+    Open your browser and visit `http://localhost:3000` to access the frontend of the e-commerce application.
 
-    * Open your web browser and navigate to `http://localhost:3000` to view the e-commerce platform.
+## Ansible Playbook Overview
+
+The provisioning logic is defined in an Ansible playbook located at the project root. Key features:
+
+- **Roles**:
+  - `frontend`: Sets up and launches the React client.
+  - `backend`: Handles the Node.js API setup.
+  - `mongodb`: Configures MongoDB for development.
+
+- **Blocks and Tags**: Playbook tasks are organized using `block` structures and tagged with names like `frontend`, `backend`, `db`, and `docker` for selective execution and readability.
+
+- **Variables**: External variable files are used to manage configuration settings such as port numbers, image versions, and MongoDB options.
 
 ## Project Structure
 
-The repository contains the following key files:
+- `Vagrantfile`: Provisions the virtual machine using VirtualBox and Vagrant.
+- `playbook.yml`: Main Ansible playbook for provisioning the environment.
+- `roles/`: Contains Ansible roles for frontend, backend, and MongoDB setup.
+- `docker-compose.yml`: Defines and manages the multi-container Docker setup.
+- `client/`: React frontend source code and Dockerfile.
+- `backend/`: Node.js backend source code and Dockerfile.
+- `explanation.md`: Detailed notes on implementation choices and configuration logic.
+- `README.md`: You are here.
 
-* `docker-compose.yml`: Defines and manages the multi-container Docker application.
-* `./client/`: Contains the source code and `Dockerfile` for the frontend application.
-* `./backend/`: Contains the source code and `Dockerfile` for the backend application.
-* `explanation.md`: Provides detailed explanations for the implementation choices made in this project.
-* `README.md`: This file, providing instructions on how to run the application.
+## Notes on MongoDB
 
-## Important Notes
+- **Authentication Disabled**: For development simplicity and automated setup, MongoDB runs with `--noauth`. This is insecure for production use.
+- **Volume Persistence**: Data is stored in the `mongo_data` Docker volume, preserving product entries between restarts.
 
-* **MongoDB Authentication:** The current configuration runs the MongoDB container with authentication **disabled** (`command: mongod --noauth --bind_ip_all` in `docker-compose.yml`). **This is not recommended for production environments due to security risks.** Efforts were made to enable authentication, but persistent issues with the chosen MongoDB image prevented a secure setup.
-* **Data Persistence:** Product data added to the application will be persisted in the `mongo_data` Docker volume, ensuring that data is retained across container restarts.
-* **Image Availability:** The Docker Compose file relies on the availability of the `papetua/yolo_backend:v2.0.0`, `papetua/yolo_frontend:v2.0.0`, and `papetua/mongo:v2.0.0` images on Docker Hub.
+## Docker Images Used
 
-## Further Information
+- `papetua/yolo_backend:v2.0.0`
+- `papetua/yolo_frontend:v2.0.0`
+- `papetua/mongo:v2.0.0`
 
-For detailed explanations of the implementation choices, Dockerfile directives, networking, volume usage, Git workflow, and debugging efforts, please refer to the `explanation.md` file in the repository root.
+These are pulled automatically during provisioning if not already present.
+
+## Testing Add Product Feature
+
+After the application launches, you can test the "Add Product" functionality using the form on the site to submit and display new products dynamically.
 
 ---
+
+For deeper implementation insights, refer to [`explanation.md`](./explanation.md).
