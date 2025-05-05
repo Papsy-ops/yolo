@@ -9,3 +9,4 @@ vault.yml
 .vscode/*.jsonmongodb_data/
 # Ignore MongoDB data volume
 mongodb_data/
+Stage_two/
