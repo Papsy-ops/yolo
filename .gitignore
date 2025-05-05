@@ -14,3 +14,4 @@ Stage_two/service-account.json
 .terraform/
 
 
+backend/google-chrome-stable_current_amd64.deb
