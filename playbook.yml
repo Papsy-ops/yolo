@@ -10,6 +10,7 @@
   roles:
     - docker 
     - setup-mongodb
+    - clone-repo
     - backend-deployment
     - frontend-deployment
        
