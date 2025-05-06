@@ -1,3 +1,4 @@
+---
 - name: Run backend container
   docker_container:
     name: "{{ backend_container_name }}"
